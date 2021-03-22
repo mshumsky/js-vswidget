@@ -31,11 +31,15 @@ module.exports = {
 					},
 					"sass-loader"
 				]
+			},
+			{
+				test: /\.svg$/,
+				loader: "svg-inline-loader"
 			}
 		]
 	},
 	devServer: {
 		contentBase: "./dist",
-		port: 9000	
+		port: 9000
 	}
 };

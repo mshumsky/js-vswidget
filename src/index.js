@@ -1,2 +1,4 @@
 import "./scss/index.scss";
-import "./js/widget";
+import Widget from "./js/Widget";
+
+new Widget({mode: "rect"});
