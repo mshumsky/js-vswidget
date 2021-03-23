@@ -4,7 +4,7 @@ const path = require("path");
 const autoprefixer = require("autoprefixer");
 
 module.exports = {
-	entry: ["@babel/polyfill", "./src/index.js"],
+	entry: ["@babel/polyfill/noConflict", "./src/index.js"],
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "widget.js"

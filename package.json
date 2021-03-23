@@ -7,7 +7,8 @@
   "scripts": {
     "watch": "webpack serve --mode=development --hot",
     "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production"
+    "build:prod": "webpack --mode=production",
+		"build": "webpack --mode=production"
   },
   "author": "Michael Shumsky",
   "license": "ISC",
