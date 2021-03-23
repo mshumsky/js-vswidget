@@ -35,7 +35,13 @@ module.exports = {
 			{
 				test: /\.svg$/,
 				loader: "svg-inline-loader"
-			}
+			},
+			{
+        test: /\.jpg$/,
+        use: {
+          loader: 'url-loader',
+        },
+      }
 		]
 	},
 	devServer: {

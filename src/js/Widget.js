@@ -1,6 +1,7 @@
 import HashParamMatcher from "./HashParamMatcher";
 import inlineBigVideoSvg from "../images/bigvideo.svg";
 import inlineSmallVideoSvg from "../images/smallvideo.svg";
+import personImageSrc from "../images/person.jpg";
 
 class Widget {
 	
@@ -13,11 +14,14 @@ class Widget {
 		if (Widget.singleton !== undefined) 
 			return;
 		Widget.singleton = this;
-
+		
 		this.mode = mode;
 		this.matcher = new HashParamMatcher(/\Wcall/i, "call");
 
 		switch (mode) {
+			case "person":
+				this.#buildPerson();
+				break;
 			case "rect":
 			case "rect-rounded":
 			case "rect-semi-rounded":
@@ -41,6 +45,29 @@ class Widget {
 		svgElem.className = "VideoSales-Icon";
 		svgElem.innerHTML = inlineSvg;
 		return svgElem;
+	}
+
+	#buildPerson() {
+		this.#buildCircle(false);
+	
+		const rootElem = this.rootElem;
+		rootElem.classList.add("VideoSales-Person");	
+		rootElem.children[0].remove();
+
+		const imageDivElem = document.createElement("div");
+		const imageElem = document.createElement("img");
+		imageElem.src = personImageSrc;
+		imageElem.style.background = `url(${personImageSrc})`;
+		imageDivElem.appendChild(imageElem);
+		rootElem.appendChild(imageDivElem);
+
+		const rectElem = document.createElement("div");
+		const pElem = document.createElement("p");
+		pElem.innerText = "Начать видеозвонок";
+		rectElem.appendChild(pElem);
+		rootElem.appendChild(rectElem);
+
+		this.#inject();
 	}
 
 	#buildCircle(inject = true) {

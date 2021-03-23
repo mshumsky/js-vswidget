@@ -15,4 +15,4 @@ query.forEach((param) => {
 
 /* Run */
 
-new Widget(params);
+window.addEventListener("DOMContentLoaded", () => new Widget(params));

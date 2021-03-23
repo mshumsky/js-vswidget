@@ -59,3 +59,38 @@ button.VideoSales-Root {
 .VideoSales-Rect.VideoSales-SemiRounded {
 	border-radius: 0px 20px;
 }
+
+.VideoSales-Circle.VideoSales-Person {
+	background: none;
+	border-radius: 0;
+	& > div:first-child {
+		box-sizing: border-box;
+		border: 1px solid #2A2B31;
+		border-radius: 50%;
+		overflow: hidden;
+		z-index: 1;
+	}
+	& > div:nth-child(2) {
+		right: calc(72px - 18px);
+		position: absolute;
+		width: 133px;
+		height: 52px;
+		background: linear-gradient(180deg, #5F2FEC 0%, #4A30EC 100%);
+		border-radius: 6px;
+		p {
+			margin: 0;
+			position: absolute;
+			left: 22px;
+			top: 9px;
+			text-align: left;
+			font-family: $primary-font;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 17px;
+			color: white;
+			width: 87px;
+			height: 34px;
+		}
+	}
+}
