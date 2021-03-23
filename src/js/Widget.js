@@ -1,25 +1,27 @@
 import HashParamMatcher from "./HashParamMatcher";
 import inlineBigVideoSvg from "../images/bigvideo.svg";
 import inlineSmallVideoSvg from "../images/smallvideo.svg";
+import inlineBubbleSvg from "../images/bubble.svg";
 import personImageSrc from "../images/person.jpg";
 
 class Widget {
-	
+
 	static singleton = undefined;
 	rootElem = undefined;
 	matcher = undefined;
 	mode = undefined;
 
 	constructor({mode}) {
-		if (Widget.singleton !== undefined) 
+		if (Widget.singleton !== undefined)
 			return;
 		Widget.singleton = this;
-		
+
 		this.mode = mode;
 		this.matcher = new HashParamMatcher(/\Wcall/i, "call");
 
 		switch (mode) {
 			case "person":
+			case "person-bubble":
 				this.#buildPerson();
 				break;
 			case "rect":
@@ -29,7 +31,7 @@ class Widget {
 				break;
 			case "circle":
 			default:
-				this.#buildCircle();			
+				this.#buildCircle();
 		}
 	}
 
@@ -49,9 +51,9 @@ class Widget {
 
 	#buildPerson() {
 		this.#buildCircle(false);
-	
+
 		const rootElem = this.rootElem;
-		rootElem.classList.add("VideoSales-Person");	
+		rootElem.classList.add("VideoSales-Person");
 		rootElem.children[0].remove();
 
 		const imageDivElem = document.createElement("div");
@@ -61,11 +63,26 @@ class Widget {
 		imageDivElem.appendChild(imageElem);
 		rootElem.appendChild(imageDivElem);
 
-		const rectElem = document.createElement("div");
-		const pElem = document.createElement("p");
-		pElem.innerText = "Начать видеозвонок";
-		rectElem.appendChild(pElem);
-		rootElem.appendChild(rectElem);
+		switch (this.mode) {
+			case "person-bubble": {
+				const bubbleSvgElem = document.createElement("div");
+				bubbleSvgElem.classList.add("VideoSales-Bubble");
+				bubbleSvgElem.innerHTML = inlineBubbleSvg;
+				bubbleSvgElem.children[0].setAttribute("viewBox", "10 10 274 107");
+				const pElem = document.createElement("p");
+				pElem.innerText = "Привет! Я Маша, давайте созвонимся по видеосвязи и я покажу автомобиль, который вас интересует";
+				bubbleSvgElem.appendChild(pElem);
+				rootElem.appendChild(bubbleSvgElem);
+				break;
+			}
+			default: {
+				const rectElem = document.createElement("div");
+				const pElem = document.createElement("p");
+				pElem.innerText = "Начать видеозвонок";
+				rectElem.appendChild(pElem);
+				rootElem.appendChild(rectElem);
+			}
+		}
 
 		this.#inject();
 	}

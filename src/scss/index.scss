@@ -92,5 +92,24 @@ button.VideoSales-Root {
 			width: 87px;
 			height: 34px;
 		}
+		&.VideoSales-Bubble {
+			background: transparent;
+			width: 274px;
+			height: 97px;
+			top: calc(-97px + 12px);
+			right: 7px;
+			z-index: 1;
+			p {
+				width: 234px;
+				height: 48px;
+				top: 15px;
+				left: 20px;
+				font-family: $primary-font;
+				font-style: normal;
+				font-weight: normal;
+				font-size: 13px;
+				line-height: 16px;
+			}
+		}
 	}
 }
