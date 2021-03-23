@@ -1,0 +1,45 @@
+.VideoSales-Topbar {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background: #602EEC;
+	height: 90px;
+	&__ContentBox {
+		@include flexCenter();
+		width: inherit;
+		height: inherit;
+	}
+	&__IconBox {
+		@include flexCenter();
+		background: #7040F5;
+		margin-right: 22px;
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		svg {
+			width: 32px;
+			height: 32px;
+		}
+	}
+	&_TextBox {
+		p {
+			margin: 0;
+			color: white;
+			&:first-child {
+				font-family: $primary-font;
+				font-style: normal;
+				font-weight: normal;
+				font-size: 24px;
+				line-height: 29px;
+				margin-bottom: 8px;
+			}
+			&:last-child {
+				font-family: $primary-font;
+				font-style: normal;
+				font-weight: normal;
+				font-size: 16px;
+				line-height: 19px;
+			}
+		}
+	}
+}

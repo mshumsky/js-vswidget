@@ -1,8 +1,8 @@
+import Circle from "./Circle";
 import HashParamMatcher from "./HashParamMatcher";
-import inlineBigVideoSvg from "../images/bigvideo.svg";
-import inlineSmallVideoSvg from "../images/smallvideo.svg";
-import inlineBubbleSvg from "../images/bubble.svg";
-import personImageSrc from "../images/person.jpg";
+import Person from "./Person";
+import Rect from "./Rect";
+import Topbar from "./Topbar";
 
 class Widget {
 
@@ -20,113 +20,65 @@ class Widget {
 		this.matcher = new HashParamMatcher(/\Wcall/i, "call");
 
 		switch (mode) {
+			case "topbar":
+			case "sidebar":
+				this.#createTopbar();
+				break;
 			case "person":
 			case "person-bubble":
-				this.#buildPerson();
+				this.#createPerson();
 				break;
 			case "rect":
 			case "rect-rounded":
 			case "rect-semi-rounded":
-				this.#buildRect();
+				this.#createRect();
 				break;
 			case "circle":
 			default:
-				this.#buildCircle();
+				this.#createCircle();
 		}
 	}
 
-	#buildRootButton() {
-		this.rootElem = document.createElement("button");
-		this.rootElem.onclick = this.#onClickListener.bind(this);
-		this.rootElem.classList.add("VideoSales-Root");
-		return this.rootElem;
+	#createTopbar() {
+		const topbar = new Topbar();
+		const rootElem = topbar.rootElem;
+		this.rootElem = rootElem;
+		topbar.inject();
 	}
 
-	#createIcon(inlineSvg) {
-		const svgElem = document.createElement("div");
-		svgElem.className = "VideoSales-Icon";
-		svgElem.innerHTML = inlineSvg;
-		return svgElem;
+	#createPerson() {
+		const person = new Person(this.mode);
+		const rootElem = person.rootElem;
+		this.rootElem = rootElem;
+		person.inject();
 	}
 
-	#buildPerson() {
-		this.#buildCircle(false);
-
-		const rootElem = this.rootElem;
-		rootElem.classList.add("VideoSales-Person");
-		rootElem.children[0].remove();
-
-		const imageDivElem = document.createElement("div");
-		const imageElem = document.createElement("img");
-		imageElem.src = personImageSrc;
-		imageElem.style.background = `url(${personImageSrc})`;
-		imageDivElem.appendChild(imageElem);
-		rootElem.appendChild(imageDivElem);
-
-		switch (this.mode) {
-			case "person-bubble": {
-				const bubbleSvgElem = document.createElement("div");
-				bubbleSvgElem.classList.add("VideoSales-Bubble");
-				bubbleSvgElem.innerHTML = inlineBubbleSvg;
-				bubbleSvgElem.children[0].setAttribute("viewBox", "10 10 274 107");
-				const pElem = document.createElement("p");
-				pElem.innerText = "Привет! Я Маша, давайте созвонимся по видеосвязи и я покажу автомобиль, который вас интересует";
-				bubbleSvgElem.appendChild(pElem);
-				rootElem.appendChild(bubbleSvgElem);
-				break;
-			}
-			default: {
-				const rectElem = document.createElement("div");
-				const pElem = document.createElement("p");
-				pElem.innerText = "Начать видеозвонок";
-				rectElem.appendChild(pElem);
-				rootElem.appendChild(rectElem);
-			}
-		}
-
-		this.#inject();
+	#createRect() {
+		const rect = new Rect(this.mode);
+		const rootElem = rect.rootElem;
+		this.rootElem = rootElem;
+		rect.inject();
 	}
 
-	#buildCircle(inject = true) {
-		const rootElem = this.#buildRootButton();
-		rootElem.classList.add("VideoSales-Circle");
-
-		const iconElem = this.#createIcon(inlineBigVideoSvg);
-		rootElem.appendChild(iconElem);
-
-		inject && this.#inject();
+	#createCircle() {
+		const circle = new Circle();
+		const rootElem = circle.rootElem;
+		this.rootElem = rootElem;
+		circle.inject();
 	}
 
-	#buildRect() {
-		const rootElem = this.#buildRootButton();
-		rootElem.classList.add("VideoSales-Rect");
-
-		switch (this.mode) {
-			case "rect-rounded":
-				rootElem.classList.add("VideoSales-Rounded");
-				break;
-			case "rect-semi-rounded":
-				rootElem.classList.add("VideoSales-SemiRounded");
-				break;
-		}
-
-		const iconElem = this.#createIcon(inlineSmallVideoSvg);
-		rootElem.appendChild(iconElem);
-
-		const pElem = document.createElement("p");
-		pElem.innerText = "Видеозвонок";
-		rootElem.appendChild(pElem);
-
-		this.#inject();
+	static getRootClass() {
+		return "VideoSales-Root";
 	}
 
-	#onClickListener() {
+	static get onClickListener() {
+		return Widget.#onClickListener.bind(Widget.singleton);
+	}
+
+	static #onClickListener() {
 		this.matcher.trigger();
 	}
 
-	#inject() {
-		document.getElementsByTagName("body")[0].appendChild(this.rootElem);
-	}
 
 }
 
