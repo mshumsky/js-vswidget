@@ -9,6 +9,10 @@
 @import "./widget/topbar.scss";
 
 
+.VideoSales-Root {
+	z-index: 2147483647;
+}
+
 button.VideoSales-Root {
 	border: none;
 	padding: 0;

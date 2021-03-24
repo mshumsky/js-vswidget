@@ -4,6 +4,10 @@
 	width: 100%;
 	background: #602EEC;
 	height: 90px;
+	overflow: hidden;
+	@include breakpointDown(mobile) {
+		height: 60px;
+	}
 	&__ContentBox {
 		@include flexCenter();
 		width: inherit;
@@ -16,6 +20,7 @@
 		width: 56px;
 		height: 56px;
 		border-radius: 50%;
+		flex-shrink: 0;
 		svg {
 			width: 32px;
 			height: 32px;
@@ -23,8 +28,11 @@
 	}
 	&_TextBox {
 		p {
+			text-align: left;
 			margin: 0;
 			color: white;
+			white-space: nowrap;
+			overflow:hidden;
 			&:first-child {
 				font-family: $primary-font;
 				font-style: normal;
@@ -39,6 +47,9 @@
 				font-weight: normal;
 				font-size: 16px;
 				line-height: 19px;
+				@include breakpointDown(mobile) {
+					display: none;
+				}
 			}
 		}
 	}

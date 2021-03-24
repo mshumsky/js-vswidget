@@ -25,6 +25,10 @@ class Utils {
 	
 		return result;
 	};
+
+	static getBody() {
+		return document.getElementsByTagName("body")[0];
+	}
 }
 
 export default Utils;

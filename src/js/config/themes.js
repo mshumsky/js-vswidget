@@ -4,6 +4,7 @@ import config from "./default";
 
 const defaultTheme = {
 	backgroundColor: "#602EEC",
+	topbarIconColor: "#FFFFFF",
 	topbarCircleColor: "#7040F5",
 	topbarPrimaryTextColor: "#FFFFFF",
 	topbarSecondaryTextColor: "#FFFFFF",

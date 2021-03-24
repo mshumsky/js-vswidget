@@ -8,8 +8,9 @@ import config from "./config/default";
 class Widget {
 
 	static singleton = undefined;
-	rootElem = undefined;
 	matcher = undefined;
+
+	controller = undefined;
 
 	constructor() {
 		if (Widget.singleton !== undefined)
@@ -18,16 +19,21 @@ class Widget {
 
 		this.matcher = new HashParamMatcher(/\Wcall/i, "call");
 
-		this.#createPerson();
-		
+		this.#createTopbar();
 	}
 
 	#createPerson() {
 		const person = new Person();
-		const rootElem = person.rootElem;
-		this.rootElem = rootElem;
+		this.controller = person;
 		person.inject();
 	}
+
+	#createTopbar() {
+		const topbar = new Topbar();
+		this.controller = topbar;
+		topbar.inject();
+	}
+	
 
 	// #createTopbar() {
 	// 	const topbar = new Topbar();
@@ -58,8 +64,13 @@ class Widget {
 	// }
 
 	reload() {
-		this.rootElem && this.rootElem.remove();
-		delete this.rootElem;
+		if (this.controller) {
+			this.controller.unload && 
+				this.controller.unload();
+			this.controller.rootElem.remove();
+			delete this.controller.rootElem;
+		}
+		delete this.controller;
 
 		this.matcher.unload();
 

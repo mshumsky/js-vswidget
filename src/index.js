@@ -18,13 +18,13 @@ config(params);
 /* Track current mode */
 
 const changeMode = (modeName) => {
-	config("currentMode", modeName);
+	config({currentMode: modeName});
 	if (!Widget.singleton) return;
 	Widget.singleton.reload();
 }
 
 const resizeListener = () => {
-	const width = document.documentElement.clientWidth;
+	const width = window.innerWidth; /* document.documentElement.clientWidth */
 	const currentMode = config("currentMode");
 	if (width <= 375 && currentMode !== "mobile") 
 		changeMode("mobile");
@@ -43,6 +43,7 @@ const resizeThrottle = () => {
 };
 
 window.addEventListener("resize", resizeThrottle);
+resizeListener();
 
 /* Run */
 

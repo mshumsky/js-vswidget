@@ -1,2 +1,26 @@
 $primary-font: "Lato", sans-serif;
 $bg-color: red;
+
+$breakpoints: (
+	mobile: 375px
+);
+
+@mixin breakpointUp($bp) {
+  @if map-has-key($breakpoints, $bp) {
+    @media (min-width: #{map-get($breakpoints, $bp)}) {
+      @content;
+    }
+  } @else {
+    @error "Breakpoint `#{$breakpoint}` doesn't exist.";
+  }
+}
+
+@mixin breakpointDown($bp) {
+  @if map-has-key($breakpoints, $bp) {
+    @media (max-width: #{map-get($breakpoints, $bp)}) {
+      @content;
+    }
+  } @else {
+    @error "Breakpoint `#{$breakpoint}` doesn't exist.";
+  }
+}
