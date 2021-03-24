@@ -1,9 +1,9 @@
+/* Main */
+
 .VideoSales-Person {
 	position: fixed;
 	width: 72px;
 	height: 72px;
-	right: 20px;
-	bottom: 44px;
 	background: transparent;
 	&__ImageBox {
 		border: 1px solid #2A2B31;
@@ -14,13 +14,23 @@
 		z-index: 1;
 	}
 	&__TextBox {
-		position: absolute;
-		top: 10px;
-		right: calc(72px - 18px);
-		width: 133px;
-		height: 52px;
+		width: 100%;
+		height: 100%;
 		background: linear-gradient(180deg, #5F2FEC 0%, #4A30EC 100%);
 		border-radius: 6px;
+		transition: transform .5s ease-out,
+								opacity .5s ease-out;
+		&AnimWrapper {
+			position: absolute;
+			top: 10px;
+			right: calc(72px - 18px);
+			width: 133px;
+			height: 52px;
+			overflow: hidden;
+		}
+		&Hidden {
+			transform: translateX(150px);
+		}
 		p {
 			font-family: $primary-font;
 			font-style: normal;
@@ -44,6 +54,11 @@
 		top: calc(-97px + 12px);
 		right: 7px;
 		z-index: 1;
+		transform: scale(0);
+		opacity: 0;
+		&Shown {
+			animation: scale-in-br 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards;
+		}
 		p {
 			position: absolute;
 			font-family: $primary-font;
@@ -59,4 +74,67 @@
 			left: 20px;
 		}
 	}
+		.VideoSales-TopLeft {
+		left: 20px;
+		top: 44px;
+	}
+	.VideoSales-TopRight {
+		right: 20px;
+		top: 44px;
+	}
+	.VideoSales-BottomLeft {
+		left: 20px;
+		bottom: 44px;
+	}
+	.VideoSales-BottomRight {
+		right: 20px;
+		bottom: 44px;
+	}
+}
+
+/* Positions */
+
+.VideoSales-Person {
+	&.VideoSales-TopLeft {
+		left: 20px;
+		top: 44px;
+	}
+	&.VideoSales-TopRight {
+		right: 20px;
+		top: 44px;
+	}
+	&.VideoSales-BottomLeft {
+		left: 20px;
+		bottom: 44px;
+	}
+	&.VideoSales-BottomRight {
+		right: 20px;
+		bottom: 44px;
+	}
+}
+
+/* Animations */
+
+@keyframes scale-in-br {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+    opacity: 0;
+  }
+  50% {
+    -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+    opacity: 1;
+  }
+	100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+		opacity: 1;
+  }
 }

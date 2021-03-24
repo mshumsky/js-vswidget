@@ -3,68 +3,68 @@ import HashParamMatcher from "./HashParamMatcher";
 import Person from "./Person";
 import Rect from "./Rect";
 import Topbar from "./Topbar";
+import config from "./config/default";
 
 class Widget {
 
 	static singleton = undefined;
 	rootElem = undefined;
 	matcher = undefined;
-	mode = undefined;
 
-	constructor({mode}) {
+	constructor() {
 		if (Widget.singleton !== undefined)
 			return;
 		Widget.singleton = this;
 
-		this.mode = mode;
 		this.matcher = new HashParamMatcher(/\Wcall/i, "call");
 
-		switch (mode) {
-			case "topbar":
-			case "sidebar":
-				this.#createTopbar();
-				break;
-			case "person":
-			case "person-bubble":
-				this.#createPerson();
-				break;
-			case "rect":
-			case "rect-rounded":
-			case "rect-semi-rounded":
-				this.#createRect();
-				break;
-			case "circle":
-			default:
-				this.#createCircle();
-		}
-	}
-
-	#createTopbar() {
-		const topbar = new Topbar();
-		const rootElem = topbar.rootElem;
-		this.rootElem = rootElem;
-		topbar.inject();
+		this.#createPerson();
+		
 	}
 
 	#createPerson() {
-		const person = new Person(this.mode);
+		const person = new Person();
 		const rootElem = person.rootElem;
 		this.rootElem = rootElem;
 		person.inject();
 	}
 
-	#createRect() {
-		const rect = new Rect(this.mode);
-		const rootElem = rect.rootElem;
-		this.rootElem = rootElem;
-		rect.inject();
-	}
+	// #createTopbar() {
+	// 	const topbar = new Topbar();
+	// 	const rootElem = topbar.rootElem;
+	// 	this.rootElem = rootElem;
+	// 	topbar.inject();
+	// }
 
-	#createCircle() {
-		const circle = new Circle();
-		const rootElem = circle.rootElem;
-		this.rootElem = rootElem;
-		circle.inject();
+	// #createPerson() {
+	// 	const person = new Person(this.mode);
+	// 	const rootElem = person.rootElem;
+	// 	this.rootElem = rootElem;
+	// 	person.inject();
+	// }
+
+	// #createRect() {
+	// 	const rect = new Rect(this.mode);
+	// 	const rootElem = rect.rootElem;
+	// 	this.rootElem = rootElem;
+	// 	rect.inject();
+	// }
+
+	// #createCircle() {
+	// 	const circle = new Circle();
+	// 	const rootElem = circle.rootElem;
+	// 	this.rootElem = rootElem;
+	// 	circle.inject();
+	// }
+
+	reload() {
+		this.rootElem && this.rootElem.remove();
+		delete this.rootElem;
+
+		this.matcher.unload();
+
+		Widget.singleton = undefined;
+		return new Widget();
 	}
 
 	static getRootClass() {

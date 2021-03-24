@@ -8,12 +8,14 @@ class HashParamMatcher {
 
 	regexp;
 	clean;
+	listener;
 	active = false;
 
 	constructor(regexp, clean) {
 		this.regexp = regexp;
 		this.clean = clean;
-		window.addEventListener("hashchange", this.#listener.bind(this));
+		this.listener = this.#listener.bind(this);
+		window.addEventListener("hashchange", this.listener);
 	}
 
 	trigger() {
@@ -28,6 +30,10 @@ class HashParamMatcher {
 			window.location.hash += `#${this.clean}`;
 			this.active = true;
 		}
+	}
+
+	unload() {
+		window.removeEventListener("hashchange", this.listener);	
 	}
 
 	#listener(e) {

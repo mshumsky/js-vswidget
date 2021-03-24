@@ -2,47 +2,71 @@ import inlineBubbleSvg from "../images/bubble.svg";
 import PersonImageSrc from "../images/person.jpg";
 import Utils from "./Utils";
 import Widget from "./Widget";
+import config from "./config/default";
+import theme from "./config/themes";
 
 class Person {
 
 	rootElem = undefined;
 
-	constructor(mode) {
+	constructor() {
 		const args = [];
 
-		switch (mode) {
-			case "person-bubble":
-				args.push(true);
-			case "person":
-			default:
-				args.push(false);
-		}
-
-		const rootElem = Utils.elementFromHTML(this.#genHtml.apply(this, args)).children[0];
+		const rootElem = Utils.elementFromHTML(this.#genHtml()).children[0];
 		rootElem.onclick = Widget.onClickListener;
 
 		this.rootElem = rootElem;
+		this.#animate();
 	}
 
-	#genHtml(bubble) {
+	#genHtml() {
+		let posClass;
+		switch (config("fab")) {
+			case "tl": posClass = "VideoSales-TopLeft";
+				break;
+			case "tr": posClass = "VideoSales-TopRight";
+				break;
+			case "bl": posClass = "VideoSales-BottomLeft";
+				break;
+			case "br":
+			default: posClass = "VideoSales-BottomRight";
+		}
+
+		const bubbleDivElem = Utils.elementFromHTML(`<div>${inlineBubbleSvg}</div>`).children[0];
+		const bubbleSvgElem = bubbleDivElem.children[0];
+		bubbleSvgElem.setAttribute("viewBox", "10 10 274 107");
+
+		const bubblePathElem = bubbleSvgElem.querySelector("path");
+		bubblePathElem.setAttribute("fill", theme("backgroundColor"));
+
 		return (`
-			<button class="${Widget.getRootClass()} VideoSales-Person">
+			<button class="${Widget.getRootClass()} VideoSales-Person ${posClass}">
 				<div class="VideoSales-Person__ImageBox">
 					<img src="${PersonImageSrc}"/>
 				</div>
-				${!bubble ? `
-						<div class="VideoSales-Person__TextBox">
-							<p>Начать видеозвонок</p>
-						</div>
-					` : `
-						<div class="VideoSales-Person__BubbleBox">
-							${inlineBubbleSvg.replace(`viewBox="0 0 294 117"`, `viewBox="10 10 274 107"`)}
-							<p>Привет! Я Маша, давайте созвонимся по видеосвязи и я покажу автомобиль, который вас интересует</p>
-						</div>
-					`
-			}
+				<div class="VideoSales-Person__TextBoxAnimWrapper">
+					<div class="VideoSales-Person__TextBox" style="color: ${theme("circlePrimaryTextColor")};background: ${theme("backgroundColor")}">
+						<p>${config("primaryText")}</p>
+					</div>
+				</div>
+				<div class="VideoSales-Person__BubbleBox" style="color: ${theme("circleSecondaryTextColor")}">
+					${bubbleDivElem.innerHTML}
+					<p>${config("secondaryText")}</p>
+				</div>
 			</button>
 		`);
+	}
+
+	#animate() {
+		const rootElem = this.rootElem;
+		setTimeout(() => {
+			const textboxElem = rootElem.querySelector(".VideoSales-Person__TextBox");
+			textboxElem.classList.add("VideoSales-Person__TextBoxHidden");
+			setTimeout(() => {
+				const bubbleboxElem = rootElem.querySelector(".VideoSales-Person__BubbleBox");
+				bubbleboxElem.classList.add("VideoSales-Person__BubbleBoxShown");
+			}, 300);
+		}, 3000);
 	}
 
 	inject() {
