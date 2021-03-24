@@ -22,8 +22,7 @@ class Topbar {
 	}
 
 	#genHtml() {
-		const videoDivElem = Utils.elementFromHTML(`<div>${inlineMediumVideoSvg}</div>`).children[0];
-		const videoSvgElem = videoDivElem.children[0];
+		const videoSvgElem =  Utils.elementFromHTML(inlineMediumVideoSvg).children[0];
 		
 		const videoSvgPathElems = videoSvgElem.querySelectorAll("path");
 		videoSvgPathElems.forEach((pathElem) =>
@@ -33,7 +32,7 @@ class Topbar {
 			<button class="${Widget.getRootClass()} VideoSales-Topbar" style="background: ${theme("backgroundColor")}">
 				<div class="VideoSales-Topbar__ContentBox">
 					<div class="VideoSales-Topbar__IconBox" style="background: ${theme("topbarCircleColor")}">
-						${videoDivElem.innerHTML}
+						${videoSvgElem.outerHTML}
 					</div>
 					<div class="VideoSales-Topbar_TextBox">
 						<p style="color: ${theme("topbarPrimaryTextColor")}">Связаться по видео</p>
@@ -73,7 +72,7 @@ class Topbar {
 		 * Seems like with pushing elements down by inserting `div` placeholder is better;
 		 * So, we don't need this anymore; */
 		/* this.#unTuneBody(); */
-		this.plcaeElem.remove();
+		this.tuneElem.remove();
 		delete this.tuneElem;
 	}
 

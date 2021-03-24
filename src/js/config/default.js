@@ -5,11 +5,12 @@
 let config = {
 	fab: "br", /* (tl|tr|bl|br) */
 	theme: "videosales",	 /* (videosales) */
-	mobileMode: "topbar", /* (person/topbar) */
+	mobileMode: "person", /* (person/topbar) */
 	desktopMode: "topbar", /* (person/topbar) */
 	primaryText: "Бесплатный звонок", /* (String) */
 	secondaryText: "Начать видеозвонок", /* (String) */
 	attract: true, /* (true/false) */
+	imageSrc: false, /* (false/string) */
 	currentMode: "desktop" /* (DO NOT TOUCH) */
 }
 

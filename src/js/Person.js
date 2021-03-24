@@ -32,8 +32,7 @@ class Person {
 			default: posClass = "VideoSales-BottomRight";
 		}
 
-		const bubbleDivElem = Utils.elementFromHTML(`<div>${inlineBubbleSvg}</div>`).children[0];
-		const bubbleSvgElem = bubbleDivElem.children[0];
+		const bubbleSvgElem = Utils.elementFromHTML(inlineBubbleSvg).children[0];
 		bubbleSvgElem.setAttribute("viewBox", "10 10 274 107");
 
 		const bubblePathElem = bubbleSvgElem.querySelector("path");
@@ -42,7 +41,7 @@ class Person {
 		return (`
 			<button class="${Widget.getRootClass()} VideoSales-Person ${posClass}">
 				<div class="VideoSales-Person__ImageBox">
-					<img src="${PersonImageSrc}"/>
+					<img src="${config("imageSrc") ?? PersonImageSrc}"/>
 				</div>
 				<div class="VideoSales-Person__TextBoxAnimWrapper">
 					<div class="VideoSales-Person__TextBox" style="background: ${theme("backgroundColor")}">
@@ -50,7 +49,7 @@ class Person {
 					</div>
 				</div>
 				<div class="VideoSales-Person__BubbleBox">
-					${bubbleDivElem.innerHTML}
+					${bubbleSvgElem.outerHTML}
 					<p style="color: ${theme("circleSecondaryTextColor")}">${config("secondaryText")}</p>
 				</div>
 			</button>

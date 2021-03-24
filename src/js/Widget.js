@@ -19,7 +19,30 @@ class Widget {
 
 		this.matcher = new HashParamMatcher(/\Wcall/i, "call");
 
-		this.#createTopbar();
+		const mode = config("currentMode");
+		console.log(mode);
+		if (mode === "mobile") {
+			console.log(config("mobileMode"));
+			switch (config("mobileMode")) {
+				case "person":
+					this.#createPerson();
+					break;
+				case "topbar":
+					this.#createTopbar();
+					break;
+			}
+		} else if (mode === "desktop") {
+			console.log(config("desktopMode"));
+			switch (config("desktopMode")) {
+				case "person":
+					this.#createPerson();
+					break;
+				case "topbar":
+					this.#createTopbar();
+					break;
+			}
+		}
+
 	}
 
 	#createPerson() {
@@ -33,7 +56,7 @@ class Widget {
 		this.controller = topbar;
 		topbar.inject();
 	}
-	
+
 
 	// #createTopbar() {
 	// 	const topbar = new Topbar();
@@ -65,7 +88,7 @@ class Widget {
 
 	reload() {
 		if (this.controller) {
-			this.controller.unload && 
+			this.controller.unload &&
 				this.controller.unload();
 			this.controller.rootElem.remove();
 			delete this.controller.rootElem;
