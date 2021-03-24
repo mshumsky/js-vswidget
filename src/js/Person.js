@@ -45,13 +45,13 @@ class Person {
 					<img src="${PersonImageSrc}"/>
 				</div>
 				<div class="VideoSales-Person__TextBoxAnimWrapper">
-					<div class="VideoSales-Person__TextBox" style="color: ${theme("circlePrimaryTextColor")};background: ${theme("backgroundColor")}">
-						<p>${config("primaryText")}</p>
+					<div class="VideoSales-Person__TextBox" style="background: ${theme("backgroundColor")}">
+						<p style="color: ${theme("circlePrimaryTextColor")}">${config("primaryText")}</p>
 					</div>
 				</div>
-				<div class="VideoSales-Person__BubbleBox" style="color: ${theme("circleSecondaryTextColor")}">
+				<div class="VideoSales-Person__BubbleBox">
 					${bubbleDivElem.innerHTML}
-					<p>${config("secondaryText")}</p>
+					<p style="color: ${theme("circleSecondaryTextColor")}">${config("secondaryText")}</p>
 				</div>
 			</button>
 		`);
