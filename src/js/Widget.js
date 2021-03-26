@@ -1,8 +1,8 @@
+import config from "./config/default";
 import HashParamMatcher from "./HashParamMatcher";
 import Person from "./Person";
 import Rect from "./Rect";
 import Topbar from "./Topbar";
-import config from "./config/default";
 
 class Widget {
 

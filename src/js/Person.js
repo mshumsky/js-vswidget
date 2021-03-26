@@ -1,9 +1,9 @@
 import inlineBubbleSvg from "../images/bubble.svg";
 import PersonImageSrc from "../images/person.jpg";
-import Utils from "./Utils";
-import Widget from "./Widget";
 import config from "./config/default";
 import theme from "./config/themes";
+import Utils from "./Utils";
+import Widget from "./Widget";
 
 class Person {
 

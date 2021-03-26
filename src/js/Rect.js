@@ -1,4 +1,5 @@
 import inlineSmallVideoSvg from "../images/smallvideo.svg";
+import theme from "./config/themes";
 import Utils from "./Utils";
 import Widget from "./Widget";
 
@@ -21,13 +22,13 @@ class Rect {
 
 		const rootElem = Utils.elementFromHTML(this.#genHtml.apply(this, args)).children[0];
 		rootElem.onclick = Widget.onClickListener;
-		
+
 		this.rootElem = rootElem;
 	}
 
 	#genHtml(classList = []) {
 		return (`
-			<button class="${Widget.getRootClass()} VideoSales-Rect ${classList.join(" ")}">
+			<button class="${Widget.getRootClass()} VideoSales-Rect ${classList.join(" ")}" style="background: ${theme("backgroundColor")}">
 				<div class="VideoSales-Rect__IconBox">
 					${inlineSmallVideoSvg}
 				</div>
@@ -37,7 +38,7 @@ class Rect {
 	}
 
 	inject() {
-	 Utils.getBody().appendChild(this.rootElem);
+		Utils.getBody().appendChild(this.rootElem);
 	}
 
 }

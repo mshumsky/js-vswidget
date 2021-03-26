@@ -5,10 +5,10 @@ class Utils {
 		return template.content.cloneNode(true);
 	}
 
-	static queryParamsToObject (query) {
+	static queryParamsToObject(query) {
 		const result = {};
 		const cleanHash = query = query.trim().replace(/[#?]/ig, "");
-	
+
 		cleanHash.split("&").forEach((param) => {
 			if (!param) return;
 			const haveEqual = param.indexOf("=");
@@ -22,7 +22,7 @@ class Utils {
 				result[split[0]] = value;
 			}
 		});
-	
+
 		return result;
 	};
 

@@ -33,7 +33,7 @@ class HashParamMatcher {
 	}
 
 	unload() {
-		window.removeEventListener("hashchange", this.listener);	
+		window.removeEventListener("hashchange", this.listener);
 	}
 
 	#listener(e) {

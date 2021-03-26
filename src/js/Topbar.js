@@ -1,9 +1,9 @@
 import inlineMediumVideoSvg from "../images/mediumvideo.svg";
-import Widget from "./Widget";
-import Utils from "./Utils";
-
 import config from "./config/default";
 import theme from "./config/themes";
+import Utils from "./Utils";
+import Widget from "./Widget";
+
 
 class Topbar {
 
@@ -22,8 +22,8 @@ class Topbar {
 	}
 
 	#genHtml() {
-		const videoSvgElem =  Utils.elementFromHTML(inlineMediumVideoSvg).children[0];
-		
+		const videoSvgElem = Utils.elementFromHTML(inlineMediumVideoSvg).children[0];
+
 		const videoSvgPathElems = videoSvgElem.querySelectorAll("path");
 		videoSvgPathElems.forEach((pathElem) =>
 			pathElem.setAttribute("stroke", theme("topbarIconColor")));
