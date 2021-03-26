@@ -41,7 +41,7 @@ class Person {
 		return (`
 			<button class="${Widget.getRootClass()} VideoSales-Person ${posClass}">
 				<div class="VideoSales-Person__ImageBox">
-					<img src="${config("imageSrc") ?? PersonImageSrc}"/>
+					<img src="${config("imageSrc") || PersonImageSrc}"/>
 				</div>
 				<div class="VideoSales-Person__TextBoxAnimWrapper">
 					<div class="VideoSales-Person__TextBox" style="background: ${theme("backgroundColor")}">

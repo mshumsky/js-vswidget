@@ -1,4 +1,3 @@
-import Circle from "./Circle";
 import HashParamMatcher from "./HashParamMatcher";
 import Person from "./Person";
 import Rect from "./Rect";
@@ -20,29 +19,37 @@ class Widget {
 		this.matcher = new HashParamMatcher(/\Wcall/i, "call");
 
 		const mode = config("currentMode");
-		console.log(mode);
 		if (mode === "mobile") {
-			console.log(config("mobileMode"));
-			switch (config("mobileMode")) {
+			const mobileMode = config("mobileMode");
+			switch (mobileMode) {
 				case "person":
 					this.#createPerson();
 					break;
 				case "topbar":
 					this.#createTopbar();
 					break;
+				case "rect":
+				case "rect-rounded":
+				case "rect-semi-rounded":
+				default:
+					this.#createRect(mobileMode);
 			}
 		} else if (mode === "desktop") {
-			console.log(config("desktopMode"));
-			switch (config("desktopMode")) {
+			const desktopMode = config("desktopMode");
+			switch (desktopMode) {
 				case "person":
 					this.#createPerson();
 					break;
 				case "topbar":
 					this.#createTopbar();
 					break;
+				case "rect":
+				case "rect-rounded":
+				case "rect-semi-rounded":
+				default:
+					this.#createRect(desktopMode);
 			}
 		}
-
 	}
 
 	#createPerson() {
@@ -57,34 +64,11 @@ class Widget {
 		topbar.inject();
 	}
 
-
-	// #createTopbar() {
-	// 	const topbar = new Topbar();
-	// 	const rootElem = topbar.rootElem;
-	// 	this.rootElem = rootElem;
-	// 	topbar.inject();
-	// }
-
-	// #createPerson() {
-	// 	const person = new Person(this.mode);
-	// 	const rootElem = person.rootElem;
-	// 	this.rootElem = rootElem;
-	// 	person.inject();
-	// }
-
-	// #createRect() {
-	// 	const rect = new Rect(this.mode);
-	// 	const rootElem = rect.rootElem;
-	// 	this.rootElem = rootElem;
-	// 	rect.inject();
-	// }
-
-	// #createCircle() {
-	// 	const circle = new Circle();
-	// 	const rootElem = circle.rootElem;
-	// 	this.rootElem = rootElem;
-	// 	circle.inject();
-	// }
+	#createRect(mode) {
+		const rect = new Rect(mode);
+		this.controller = rect;
+		rect.inject();
+	}
 
 	reload() {
 		if (this.controller) {
@@ -110,9 +94,17 @@ class Widget {
 	}
 
 	static #onClickListener() {
-		this.matcher.trigger();
-	}
+		/* Trigger hash */
+		config("triggerHash") && (
+			this.matcher.trigger()
+		);
 
+		/* Trigger event */
+		config("triggerEvent") && (() => {
+			const event = new CustomEvent("videosaleswidgetclick", {detail: this.controller.rootElem})
+			window.dispatchEvent(event);
+		})();
+	}
 
 }
 

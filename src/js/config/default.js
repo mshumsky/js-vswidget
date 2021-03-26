@@ -8,9 +8,11 @@ let config = {
 	mobileMode: "person", /* (person/topbar) */
 	desktopMode: "topbar", /* (person/topbar) */
 	primaryText: "Бесплатный звонок", /* (String) */
-	secondaryText: "Начать видеозвонок", /* (String) */
+	secondaryText: "Привет! Я Маша, давайте созвонимся по видеосвязи и я покажу автомобиль, который вас интересует", /* (String) */
 	attract: true, /* (true/false) */
 	imageSrc: false, /* (false/string) */
+	triggerHash: true, /* (true/false) */
+	triggerEvent: true, /* (true/false) */
 	currentMode: "desktop" /* (DO NOT TOUCH) */
 }
 

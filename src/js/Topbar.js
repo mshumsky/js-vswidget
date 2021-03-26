@@ -79,7 +79,18 @@ class Topbar {
 	inject() {
 		const body = Utils.getBody();
 		body.appendChild(this.rootElem);
-		
+
+		const existingTuners = document.querySelectorAll(".VideoSales-Tuner");
+		if (existingTuners.length !== 0) {
+			let tuneElem;
+			existingTuners.forEach((el, index) => {
+				if (existingTuners.length - 1 !== index)
+					return el.remove();
+				tuneElem = el;
+			});
+			return this.tuneElem = tuneElem;
+		}
+
 		const tuneElem = document.createElement("div");
 		tuneElem.className = `VideoSales-Topbar VideoSales-Tuner`;
 		tuneElem.style.display = "block";

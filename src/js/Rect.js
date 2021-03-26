@@ -21,7 +21,7 @@ class Rect {
 
 		const rootElem = Utils.elementFromHTML(this.#genHtml.apply(this, args)).children[0];
 		rootElem.onclick = Widget.onClickListener;
-
+		
 		this.rootElem = rootElem;
 	}
 
@@ -37,7 +37,7 @@ class Rect {
 	}
 
 	inject() {
-		document.getElementsByTagName("body")[0].appendChild(this.rootElem);
+	 Utils.getBody().appendChild(this.rootElem);
 	}
 
 }

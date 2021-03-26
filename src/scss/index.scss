@@ -3,7 +3,6 @@
 @import "./variables.scss";
 @import "./mixins.scss";
 
-@import "./widget/circle.scss";
 @import "./widget/rect.scss";
 @import "./widget/person.scss";
 @import "./widget/topbar.scss";
@@ -21,4 +20,9 @@ button.VideoSales-Root {
 	&:focus {
 		outline: none;
 	}
+}
+
+.VideoSales-Root p {
+	overflow-wrap: break-word;
+	overflow: hidden;
 }
