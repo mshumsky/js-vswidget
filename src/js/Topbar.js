@@ -35,8 +35,8 @@ class Topbar {
 						${videoSvgElem.outerHTML}
 					</div>
 					<div class="VideoSales-Topbar_TextBox">
-						<p style="color: ${theme("topbarPrimaryTextColor")}">Связаться по видео</p>
-						<p style="color: ${theme("topbarSecondaryTextColor")}">Покажем автомобиль прямо сейчас</p>
+						<p style="color: ${theme("topbarPrimaryTextColor")}">${config("topbarPrimaryText")}</p>
+						<p style="color: ${theme("topbarSecondaryTextColor")}">${config("topbarSecondaryText")}</p>
 					</div>
 				</div>
 			</button>

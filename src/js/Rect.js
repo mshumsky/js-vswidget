@@ -1,4 +1,5 @@
 import inlineSmallVideoSvg from "../images/smallvideo.svg";
+import config from "./config/default";
 import theme from "./config/themes";
 import Utils from "./Utils";
 import Widget from "./Widget";
@@ -32,7 +33,7 @@ class Rect {
 				<div class="VideoSales-Rect__IconBox">
 					${inlineSmallVideoSvg}
 				</div>
-				<p>Видеозвонок</p>
+				<p>${config("rectPrimaryText")}</p>
 			</button>
 		`)
 	}

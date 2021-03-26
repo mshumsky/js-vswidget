@@ -45,12 +45,12 @@ class Person {
 				</div>
 				<div class="VideoSales-Person__TextBoxAnimWrapper">
 					<div class="VideoSales-Person__TextBox" style="background: ${theme("backgroundColor")}">
-						<p style="color: ${theme("circlePrimaryTextColor")}">${config("primaryText")}</p>
+						<p style="color: ${theme("circlePrimaryTextColor")}">${config("personPrimaryText")}</p>
 					</div>
 				</div>
 				<div class="VideoSales-Person__BubbleBox">
 					${bubbleSvgElem.outerHTML}
-					<p style="color: ${theme("circleSecondaryTextColor")}">${config("secondaryText")}</p>
+					<p style="color: ${theme("circleSecondaryTextColor")}">${config("personSecondaryText")}</p>
 				</div>
 			</button>
 		`);

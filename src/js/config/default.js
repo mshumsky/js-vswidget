@@ -7,8 +7,11 @@ let config = {
 	theme: "videosales",	 /* (videosales) */
 	mobileMode: "person", /* (person/topbar) */
 	desktopMode: "topbar", /* (person/topbar) */
-	primaryText: "Бесплатный звонок", /* (String) */
-	secondaryText: "Привет! Я Маша, давайте созвонимся по видеосвязи и я покажу автомобиль, который вас интересует", /* (String) */
+	topbarPrimaryText: "Связаться по видео", /* (String) */
+	topbarSecondaryText: "Покажем автомобиль прямо сейчас", /* (String) */
+	rectPrimaryText: "Видеозвонок", /* (String) */
+	personPrimaryText: "Начать видеозвонок", /* (String) */
+	personSecondaryText: "Привет! Я Маша, давайте созвонимся по видеосвязи и я покажу автомобиль, который вас интересует.",
 	attract: true, /* (true/false) */
 	imageSrc: false, /* (false/string) */
 	triggerHash: true, /* (true/false) */
