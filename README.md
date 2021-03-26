@@ -62,7 +62,7 @@ npm run build
 * **false**
 
 ### Пример интеграции с настройками
-В данном примере будет использовать режим `rect` в мобильной версии сайта, `person` в десктопной версии, не будет модифицироваться `window.location.hash`, вместо этого придёться ловить сообытие "videosaleswidgetclick".
+В данном примере будет использовать режим `rect` в мобильной версии сайта, `person` в десктопной версии, не будет модифицироваться `window.location.hash`, вместо этого придётся ловить сообытие "videosaleswidgetclick".
 
 ```html
 <script src="./widget.js?mobileMode=rect&desktopMode=person&triggerHash=false&imageSrc=https://via.placeholder.com/72"></script>
