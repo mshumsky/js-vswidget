@@ -69,7 +69,7 @@ class Person {
 	}
 
 	inject() {
-		document.getElementsByTagName("body")[0].appendChild(this.rootElem);
+		Utils.getBody().appendChild(this.rootElem);
 	}
 
 }
