@@ -8,7 +8,7 @@ npm run build
 # Настройки
 
 Настройки по умолчанию [default.js](https://github.com/mshumsky/js-vswidget/blob/main/src/js/config/default.js)  
-Темы [themes.js](https://github.com/mshumsky/js-vswidget/blob/main/src/js/config/default.js)
+Темы [themes.js](https://github.com/mshumsky/js-vswidget/blob/main/src/js/config/themes.js)
 
 ## fab
 Используется режимом `person` для определения расположения виджета.  
@@ -20,7 +20,7 @@ npm run build
 
 ## theme
 Используется всеми режимами для кастомизации цвета элементов.  
-Объявление новых тем реализуется в файле [themes.js](https://github.com/mshumsky/js-vswidget/blob/main/src/js/config/default.js)  
+Объявление новых тем реализуется в файле [themes.js](https://github.com/mshumsky/js-vswidget/blob/main/src/js/config/themes.js)  
 
 * **videosales** - Стандартная тема
 
